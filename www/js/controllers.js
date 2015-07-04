@@ -1,6 +1,29 @@
+/// <reference path="../../typings/angularjs/angular.d.ts"/>
 angular.module('starter.controllers', [])
 
-.controller('DashCtrl', function($scope) {})
+.controller('DashCtrl', function($scope, Commands) {
+  
+  $scope.open = function() {
+    // 
+    alert('opening...');
+    
+    Commands.doCommand()
+    .then(
+      function(response) {
+        $scope.data = response;
+      }
+    );
+    
+  };
+  // 
+  $scope.close = function() {
+    // 
+    alert('closing...');
+  };
+  
+}) 
+  
+
 
 .controller('ChatsCtrl', function($scope, Chats) {
   // With the new view caching in Ionic, Controllers are only called
@@ -11,6 +34,8 @@ angular.module('starter.controllers', [])
   //$scope.$on('$ionicView.enter', function(e) {
   //});
   
+  ///////
+ 
   $scope.chats = Chats.all();
   $scope.remove = function(chat) {
     Chats.remove(chat);
