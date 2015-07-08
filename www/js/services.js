@@ -4,11 +4,11 @@ angular.module('starter.services', [])
   // Might use a resource here that returns a JSON array
   
   return {
-    doCommand: function (params) {
+    doCommand: function (command) {
 
       var deferred = $q.defer();
 
-      $http.get('http://localhost:3000/posts/1')
+      $http.get('http://localhost:3000/' + command)
         .then(function (result) {
         console.log(result.data);
         deferred.resolve(result.data);

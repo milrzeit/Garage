@@ -1,0 +1,12 @@
+{
+  "open": [
+    {
+      "response": "OK-Open"
+    }
+  ],
+  "close": [
+    {
+      "response": "OK-Close"
+    }
+  ]
+}
