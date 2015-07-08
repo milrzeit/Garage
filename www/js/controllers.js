@@ -4,21 +4,22 @@ angular.module('starter.controllers', [])
 .controller('DashCtrl', function($scope, Commands) {
   
   $scope.open = function() {
-    // 
-    alert('opening...');
-    
-    Commands.doCommand()
+    Commands.doCommand('open')
     .then(
       function(response) {
         $scope.data = response;
       }
     );
-    
   };
   // 
   $scope.close = function() {
     // 
-    alert('closing...');
+     Commands.doCommand('close')
+    .then(
+      function(response) {
+        $scope.data = response;
+      }
+    );
   };
   
 }) 

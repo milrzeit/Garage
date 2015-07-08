@@ -4,12 +4,12 @@
       <div class="item item-divider">Commands</div>
       <div class="item item-body">
         <div>
-          <button ng-click="open()">Open</button>
-          <button ng-click="close()">Close</button>
+          <button class="button button-positive button-full" ng-click="open()">Open</button>
+          <button class="button button-balanced button-full" ng-click="close()">Close</button>
         </div>
         <div>
           <pre>
-          data: {{data | json}}
+          <h1>Data:</h1> {{data | json}}
           </pre>
         </div>
       </div>
