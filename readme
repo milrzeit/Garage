@@ -1,2 +1,21 @@
 // setup dev server based on this 
-http://torquemag.io/setting-node-server-json-rest-api-powered-single-page-web-app/
+https://www.npmjs.com/package/json-server
+
+npm install -g json-server
+
+cat < db.json
+{
+  "open": [
+    {
+      "response": "OK-Open"
+    }
+  ],
+  "close": [
+    {
+      "response": "OK-Close"
+    }
+  ]
+}
+^d
+
+json-server --watch db.json
