@@ -2,19 +2,21 @@
 angular.module('starter.controllers', [])
 
 .controller('DashCtrl', function($scope, Commands) {
+
+  $scope.vm = {};
   
   $scope.open = function() {
-    Commands.doCommand('open')
+    Commands.doCommand(1)
     .then(
       function(response) {
-        $scope.data = response;
+        $scope.vm.garageStatus = response;
       }
     );
   };
   // 
   $scope.close = function() {
     // 
-     Commands.doCommand('close')
+     Commands.doCommand(0)
     .then(
       function(response) {
         $scope.data = response;

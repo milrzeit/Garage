@@ -7,11 +7,12 @@ angular.module('starter.services', [])
     doCommand: function (command) {
 
       var deferred = $q.defer();
-
-      $http.get('http://localhost:3000/' + command)
+      // todo: make this a config setting!!
+      var ip = '192.168.0.118';
+      $http.get('http://' + ip + '/arduino/digital/13/' + command)
         .then(function (result) {
-        console.log(result.data);
-        deferred.resolve(result.data);
+        console.log(result.data.response);
+        deferred.resolve(result.data.response);
       },
         function (result) {
           deferred.reject(result);
