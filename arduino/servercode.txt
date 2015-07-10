@@ -1,4 +1,5 @@
 // from https://www.arduino.cc/en/Tutorial/Bridge?action=sourceblock&num=13
+
 // Possible commands are listed here:
 //
 // "digital/13"     -> digitalRead(13)
@@ -23,7 +24,7 @@ void setup() {
   pinMode(13,OUTPUT);
   digitalWrite(13, LOW);
   Bridge.begin();
-  digitalWrite(13, HIGH);
+//  digitalWrite(13, HIGH);
 
   // Listen for incoming connection only from localhost
   // (no one from the external network could connect)
@@ -51,6 +52,11 @@ void process(YunClient client) {
   // read the command
   String command = client.readStringUntil('/');
 
+ // is "onOff" command?
+  if (command == "onOff") {
+    onOffCommand(client);
+  }
+
   // is "digital" command?
   if (command == "digital") {
     digitalCommand(client);
@@ -66,6 +72,34 @@ void process(YunClient client) {
     modeCommand(client);
   }
 }
+
+void onOffCommand(YunClient client) {
+  int pin, value;
+
+  // Read pin number
+  pin = client.parseInt();
+
+  // If the next character is a '/' it means we have an URL
+  // with a value like: "/digital/13/1"
+  digitalWrite(pin, 1);
+  client.print(F("Pin D"));
+  client.print(pin);
+  client.print(F(" set to 1"));
+  client.print(F("\n"));
+    
+  delay(15#000);
+	
+  digitalWrite(pin, 0);
+  client.print(F("Pin D"));
+  client.print(pin);
+  client.print(F(" set to 1"));
+  
+  // Update datastore key with the current pin value
+  String key = "D";
+  key += pin;
+  Bridge.put(key, String(value));
+}
+
 
 void digitalCommand(YunClient client) {
   int pin, value;
